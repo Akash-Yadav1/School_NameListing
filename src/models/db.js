@@ -1,25 +1,25 @@
-const mysql = require('mysql');
-const dotenv = require('dotenv');
+const mysql = require("mysql2");
+const dotenv = require("dotenv");
 
 dotenv.config();
 
 const connectDB = () => {
-    const connection = mysql.createConnection({
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME
-    });
+  const connection = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+  });
 
-    connection.connect((err) => {
-        if (err) {
-            console.error('Database connection failed: ' + err.stack);
-            return;
-        }
-        console.log('Connected to database as id ' + connection.threadId);
-    });
+  connection.connect((err) => {
+    if (err) {
+      console.error("Database connection failed: " + err.stack);
+      return;
+    }
+    console.log("Connected to database as id " + connection.threadId);
+  });
 
-    return connection;
+  return connection;
 };
 
 module.exports = connectDB;
