@@ -1,0 +1,79 @@
+{
+  "info": {
+    "name": "School Management API",
+    "description": "Postman collection for School Management API to manage school data.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Add School",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\": \"Sample School\", \"address\": \"123 School St\", \"latitude\": 40.7128, \"longitude\": -74.0060}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/addSchool",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "addSchool"
+          ]
+        }
+      },
+      "response": [
+        {
+          "code": 201,
+          "body": "{\"message\": \"School added successfully\"}"
+        },
+        {
+          "code": 400,
+          "body": "{\"error\": \"Invalid input data\"}"
+        }
+      ]
+    },
+    {
+      "name": "List Schools",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/listSchools?latitude=40.7128&longitude=-74.0060",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "listSchools"
+          ],
+          "query": [
+            {
+              "key": "latitude",
+              "value": "40.7128"
+            },
+            {
+              "key": "longitude",
+              "value": "-74.0060"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "code": 200,
+          "body": "[{\"id\": 1, \"name\": \"Sample School\", \"address\": \"123 School St\", \"latitude\": 40.7128, \"longitude\": -74.0060}]"
+        },
+        {
+          "code": 404,
+          "body": "{\"error\": \"No schools found\"}"
+        }
+      ]
+    }
+  ]
+}
